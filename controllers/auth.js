@@ -5,11 +5,6 @@ var expressJwt = require('express-jwt');
 // const read = require("body-parser/lib/read");
 
 exports.signup = (req, res) => {
-  /*  console.log("REQ BODY", req.body);
-  res.json({
-    message: "Signup Route Works!",
-  }); */
-
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({
@@ -19,7 +14,9 @@ exports.signup = (req, res) => {
   }
 
   const user = new User(req.body);
+  console.log('user', user);
   user.save((error, user) => {
+    console.log('error', error);
     if (error) {
       return res.status(400).json({
         error: 'Unable to Save user in the DB',

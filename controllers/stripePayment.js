@@ -1,9 +1,9 @@
-const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY);
-const { v4: uuidv4 } = require("uuid");
+const stripe = require('stripe')(process.env.SECRET_STRIPE_KEY);
+const { v4: uuidv4 } = require('uuid');
 
 exports.makepayment = (req, res) => {
   const { products, token } = req.body;
-  console.log("PRODUCTS", products);
+  console.log('PRODUCTS', products);
 
   let amount = 0;
   products.map((p) => {
@@ -18,10 +18,10 @@ exports.makepayment = (req, res) => {
       source: token.id,
     })
     .then((customer) => {
-      stripe.charges.create(
+      stripe?.charge?.create(
         {
           amount: amount * 100,
-          currency: "usd",
+          currency: 'usd',
           customer: customer.id,
           receipt_email: token.email,
           shipping: {

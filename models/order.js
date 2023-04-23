@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
 const productCartSchema = new mongoose.Schema({
   product: {
     type: ObjectId,
-    ref: "Product",
+    ref: 'Product',
   },
 
   name: String,
@@ -12,7 +12,7 @@ const productCartSchema = new mongoose.Schema({
   price: Number,
 });
 
-const ProductCart = mongoose.model("ProductCart", productCartSchema);
+const ProductCart = mongoose.model('ProductCart', productCartSchema);
 
 const orderSchema = new mongoose.Schema(
   {
@@ -24,25 +24,18 @@ const orderSchema = new mongoose.Schema(
     address: String,
     status: {
       type: String,
-      default: "Recieved",
-      enum: [
-        "Cancelled",
-        "Delivered",
-        "Shipped",
-        "Processing",
-        "Transist",
-        "Recie6-ved",
-      ],
+      default: 'Recieved',
+      enum: ['Cancelled', 'Delivered', 'Shipped', 'Processing', 'Transist', 'Recieved'],
     },
     updated: Date,
     user: {
       type: ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   },
   { timestamps: true }
 );
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = mongoose.model('Order', orderSchema);
 
 module.exports = { Order, ProductCart };
